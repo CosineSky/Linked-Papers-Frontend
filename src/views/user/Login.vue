@@ -65,10 +65,10 @@ function handleLogin() {
         <h1>登入您的账户</h1>
         <el-form>
           <el-form-item>
-            <label v-if="!hasEmailInput" for="email">注册邮箱</label>
+            <label v-if="!hasEmailInput" for="email">邮箱</label>
             <label v-else-if="!isEmailValid" for="email" class="error-warn">邮箱不合法</label>
-            <label v-else for="email">注册邮箱</label>
-            <el-input id="tel" type="text" v-model="email"
+            <label v-else for="email">邮箱</label>
+            <el-input id="email" type="text" v-model="email"
                       required :class="{'error-warn-input' :(hasEmailInput && !isEmailValid)}"
                       placeholder="请输入邮箱"/>
           </el-form-item>
