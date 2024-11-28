@@ -8,9 +8,12 @@ export const searchByKeyword = (keyword: string, page: number) => {
     return axios.get(`${SEARCH_MODULE}/${keyword}/${page}`,
         { headers: { 'Content-Type': 'application/json' } })
         .then(res => {
-            console.log(res.data)
+            console.log(res)
             return res;
-        });
+        })
+        .catch(e => {
+            console.log(e)
+        })
 };
 
 // 根据论文Id获取指定论文详情

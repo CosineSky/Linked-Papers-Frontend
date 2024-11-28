@@ -40,6 +40,7 @@ export const userRegister = (registerInfo: RegisterInfo) => {
 export const userInfo = () => {
     return axios.get(`${USER_MODULE}`)
         .then(res => {
+            console.log(res.data)
             return res
         })
 }

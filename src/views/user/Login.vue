@@ -29,24 +29,31 @@ function handleLogin() {
     password: password.value
   }).then(res => {
       // console.log(res.data)
-      if (res.data.code === '000') {
-    // if (res.data.message === 'Login successful') {
+      // if (res.data.code === '000') {
+    if (res.data.message === 'Login successful') {
       ElMessage({
         message: "登录成功！",
         type: 'success',
         center: true,
       })
+      
       const token = res.data.result
-      sessionStorage.setItem('token', token)
-
-      userInfo().then(res => {
+        sessionStorage.setItem('token', token)
         sessionStorage.setItem('name', res.data.result.name)
         sessionStorage.setItem('role', res.data.result.role)
-        if (res.data.result.role === 'STAFF') {
-          sessionStorage.setItem('storeId', res.data.result.storeId)
-        }
         router.push({path: "/search"})
-      })
+      // userInfo()
+      //     .then(res => {
+      //       sessionStorage.setItem('name', res.data.result.name)
+      //       sessionStorage.setItem('role', res.data.result.role)
+      //       if (res.data.result.role === 'STAFF') {
+      //         sessionStorage.setItem('storeId', res.data.result.storeId)
+      //       }
+      //       router.push({path: "/search"})
+      //   })
+      //     .catch(() => {
+      //         console.log("Hi")
+      //     })
     } else if (res.data.code === '400') {
       ElMessage({
         message: res.data.msg,
