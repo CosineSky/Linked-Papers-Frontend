@@ -22,6 +22,7 @@ export const userLogin = (loginInfo: LoginInfo) => {
     return axios.post(`${USER_MODULE}/login`, loginInfo, {
         headers: {'Content-Type': 'application/json'}
     }).then(res => {
+        console.log(res.data)
         return res
     })
 }

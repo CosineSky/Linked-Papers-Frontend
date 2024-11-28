@@ -3,8 +3,8 @@ import {Document,SwitchButton} from "@element-plus/icons-vue"   //图标
 import { Search } from "@element-plus/icons-vue"
 import {useRouter} from "vue-router";
 import {computed} from "vue";
-import UpgradeDialog from "../../components/UpgradeDialog.vue"; // 导入封装的弹窗组件
-import { openDialog } from "./UpgradeDialog.vue"; // 引入 openDialog 方法
+// import UpgradeDialog from "./UpgradeDialog.vue"; // 导入封装的弹窗组件
+// import { openDialog } from "./UpgradeDialog.vue"; // 引入 openDialog 方法
 
 const router = useRouter()
 const role = sessionStorage.getItem('role')    //登录的时候插入的
@@ -16,7 +16,7 @@ const roleText = computed(() => {
 // 点击事件处理，根据角色决定是否显示弹窗
 const handleClick = () => {
   if (role == "USER") {
-    openDialog(); // 仅在用户为 USER 时显示升级弹窗
+    // openDialog(); // 仅在用户为 USER 时显示升级弹窗
   } else {
     alert("您已是尊贵的 VIP 用户！");
   }

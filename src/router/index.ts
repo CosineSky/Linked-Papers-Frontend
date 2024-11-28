@@ -24,6 +24,14 @@ const router = createRouter({
                 component: () => import('../views/paper/Search.vue'),
                 meta: {title: '主页'}
             },
+            // {
+            //     path: '/paperList',
+            //     name: 'paperList',
+            //     component: () => import('../views/order/PaperList.vue'),
+            //     meta: {
+            //         title: '论文列表',
+            //     }
+            // },
             {
                 path: '/paperDetail/:storeId',
                 name: 'paperDetail',
@@ -60,36 +68,36 @@ const router = createRouter({
     }]
 })
 
-router.beforeEach((to, _, next) => {
-    const token: string | null = sessionStorage.getItem('token')
-    const role: string | null = sessionStorage.getItem('role')
-    const storeId: string | null = sessionStorage.getItem('storeId')
-
-    if (to.meta.title) {
-        document.title = to.meta.title
-    }
-
-    if (!token) {
-        if (to.path === '/login' || to.path === '/register') {
-            next()
-        } else {
-            next('/login')
-        }
-        return
-    }
-
-    if (to.meta.permission && !to.meta.permission.includes(role!)) {
-        next('/404')
-        return
-    }
-
-    if (to.name === 'createProduct' && to.params.storeId !== storeId) {
-        next('/404')
-        return
-    }
-
-    next()
-})
+// router.beforeEach((to, _, next) => {
+//     const token: string | null = sessionStorage.getItem('token')
+//     const role: string | null = sessionStorage.getItem('role')
+//     const storeId: string | null = sessionStorage.getItem('storeId')
+//
+//     if (to.meta.title) {
+//         document.title = to.meta.title
+//     }
+//
+//     if (!token) {
+//         if (to.path === '/login' || to.path === '/register') {
+//             next()
+//         } else {
+//             next('/login')
+//         }
+//         return
+//     }
+//
+//     if (to.meta.permission && !to.meta.permission.includes(role!)) {
+//         next('/404')
+//         return
+//     }
+//
+//     if (to.name === 'createProduct' && to.params.storeId !== storeId) {
+//         next('/404')
+//         return
+//     }
+//
+//     next()
+// })
 
 
 export {router}

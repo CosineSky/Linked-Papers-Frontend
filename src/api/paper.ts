@@ -5,9 +5,10 @@ import { SEARCH_MODULE, PAPER_MODULE } from './_prefix';
 
 // 根据指定关键词查找
 export const searchByKeyword = (keyword: string, page: number) => {
-    return axios.get(`${SEARCH_MODULE}/search/${keyword}/${page}`,
+    return axios.get(`${SEARCH_MODULE}/${keyword}/${page}`,
         { headers: { 'Content-Type': 'application/json' } })
         .then(res => {
+            console.log(res.data)
             return res;
         });
 };

@@ -28,7 +28,9 @@ function handleLogin() {
     email: email.value,
     password: password.value
   }).then(res => {
-    if (res.data.code === '000') {
+      // console.log(res.data)
+      if (res.data.code === '000') {
+    // if (res.data.message === 'Login successful') {
       ElMessage({
         message: "登录成功！",
         type: 'success',
