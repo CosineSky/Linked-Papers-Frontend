@@ -3,19 +3,19 @@ import { ref, computed } from "vue";
 import { searchByKeyword } from "../../api/paper";
 import PaperItem from "../../components/PaperItem.vue";
 import { ElButton, ElInput, ElPagination } from "element-plus";
-
+import {router} from '../../router'
 // 定义 Paper 接口
 interface Paper {
   id: number;
   title: string;
 }
-
+const role = sessionStorage.getItem("role")
+console.log(role)
 const searchQuery = ref("");
 const papers = ref<Paper[]>([]);
 const totalPapers = ref(0);
 const currentPage = ref(1);
 const papersPerPage = 10;
-
 
 const searchDisabled = computed(() => !searchQuery.value.trim());
 
@@ -30,9 +30,11 @@ const searchPapers = async () => {
   try {
     // 发起 API 请求获取数据
     const res = await searchByKeyword(searchQuery.value, currentPage.value);
-    if (res && res.data.result) {
-      papers.value = res.data.result.papers;
-      totalPapers.value = res.data.result.totalCount;
+    console.log(res);
+    if (res) {
+      papers.value = res.data.essays;
+      console.log(papers.value);
+      totalPapers.value = res.data.totalCount;
     }
   } catch (error) {
     console.error("搜索失败：", error);
@@ -43,6 +45,10 @@ const searchPapers = async () => {
 const handlePageChange = (page: number) => {
   currentPage.value = page;
   searchPapers(); // 根据当前页重新获取论文数据
+}
+// 点击论文卡片，跳转到对应的论文界面
+function toStoreDetailPage(paperId: Number) {
+  router.push("/paperDetail/" + paperId)
 }
 </script>
 
@@ -61,6 +67,7 @@ const handlePageChange = (page: number) => {
           v-for="paper in papers"
           :key="paper.id"
           :paperVO="paper"
+          @click="toStoreDetailPage(paper.id)"
       />
     </div>
 

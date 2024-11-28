@@ -4,7 +4,7 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes: [{
         path: '/',
-        redirect: '/login',
+        redirect: '/home',
     }, {
         path: '/login',
         component: () => import('../views/user/Login.vue'),
@@ -24,34 +24,26 @@ const router = createRouter({
                 component: () => import('../views/paper/Search.vue'),
                 meta: {title: '主页'}
             },
-            // {
-            //     path: '/paperList',
-            //     name: 'paperList',
-            //     component: () => import('../views/order/PaperList.vue'),
-            //     meta: {
-            //         title: '论文列表',
-            //     }
-            // },
             {
-                path: '/paperDetail/:storeId',
+                path: '/paperDetail/:paperId',
                 name: 'paperDetail',
                 component: () => import('../views/paper/PaperDetail.vue'),
                 meta: {title: '论文详情'}
             },
             {
-                path: '/citedPaperList/:storeId',
+                path: '/citedPaperList/:paperId',
                 name: 'citedPaperList',
                 component: () => import('../views/paper/CitedPaperList.vue'),
                 meta: {title: '引用论文列表'}
             },
             {
-                path: '/relatedPaperList/:storeId',
+                path: '/relatedPaperList/:paperId',
                 name: 'relatedPaperList',
                 component: () => import('../views/paper/RelatedPaperList.vue'),
                 meta: {title: '相关论文列表'}
             },
             {
-                path: '/similarPaperList/:storeId',
+                path: '/similarPaperList/:paperId',
                 name: 'similarPaperList',
                 component: () => import('../views/paper/SimilarPaperList.vue'),
                 meta: {title: '同类论文列表'}

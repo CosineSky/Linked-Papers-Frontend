@@ -3,37 +3,36 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { getRelatedPaperById } from "../../api/paper";
 import PaperItem from "../../components/PaperItem.vue";
-import { ElPagination } from "element-plus";
+import {router} from '../../router'
 
 interface Paper {
-  id: string;
+  id: number;
   title: string;
 }
 
 const route = useRoute();
 const id = ref(route.params.paperId as string);
-const paperId =+id;
+const paperId =+id.value;
 const papers = ref<Paper[]>([]);
-const totalPapers = ref(0);
-const currentPage = ref(1);
-const papersPerPage = 10;
+
 
 const fetchRelatedPapers = async () => {
   try {
+    console.log(paperId)
     const res = await getRelatedPaperById(paperId);
-    if (res && res.data) {
-      papers.value = res.data.result.papers;
-      totalPapers.value = res.data.result.totalCount;
+    console.log(res)
+    if (res) {
+      papers.value = res.data;
     }
   } catch (error) {
     console.error("获取相关论文失败：", error);
   }
 };
+// 点击论文卡片，跳转到对应的论文界面
+function toStoreDetailPage(paperId: Number) {
+  router.push("/paperDetail/" + paperId)
+}
 
-const handlePageChange = (page: number) => {
-  currentPage.value = page;
-  fetchRelatedPapers(); // 根据当前页重新获取论文数据
-};
 
 onMounted(() => {
   fetchRelatedPapers();
@@ -48,15 +47,9 @@ onMounted(() => {
           v-for="paper in papers"
           :key="paper.id"
           :paperVO="paper"
+          @click="toStoreDetailPage(paper.id)"
       />
     </div>
 
-    <el-pagination
-        :current-page="currentPage"
-        :page-size="papersPerPage"
-        :total="totalPapers"
-        @current-change="handlePageChange"
-        layout="prev, pager, next, jumper"
-    />
   </div>
 </template>

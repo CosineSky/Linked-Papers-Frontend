@@ -13,13 +13,14 @@ interface Paper {
 const route = useRoute();
 const router = useRouter();
 const id = ref(route.params.paperId as string);
-const paperId =+ id;
+const paperId =+ id.value;
 const paper = ref<Paper | null>(null);
 const role = sessionStorage.getItem('role')
 
 // 获取论文详情的函数
 const fetchPaperDetail = async () => {
   try {
+    console.log(id.value)
     const res = await getPaperById(paperId);
     if (res) {
       paper.value = res.data;

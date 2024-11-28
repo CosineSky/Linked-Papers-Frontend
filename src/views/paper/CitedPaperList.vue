@@ -7,13 +7,13 @@ import { ElPagination } from "element-plus";
 
 // 定义 Paper 接口
 interface Paper {
-  id: string;
+  id: number;
   title: string;
 }
 
 const route = useRoute();
 const id = ref(route.params.paperId as string); // 获取论文ID
-const paperId =+ id;
+const paperId =+ id.value;
 const papers = ref<Paper[]>([]);
 const totalPapers = ref(0);
 const currentPage = ref(1);
@@ -23,9 +23,9 @@ const papersPerPage = 10;
 const fetchCitedPapers = async () => {
   try {
     const res = await getCitedPaperById(paperId);
-    if (res && res.data) {
-      papers.value = res.data.result.papers;
-      totalPapers.value = res.data.result.totalCount;
+    console.log(res)
+    if (res) {
+      papers.value = res.data;
     }
   } catch (error) {
     console.error("获取引用论文失败：", error);
