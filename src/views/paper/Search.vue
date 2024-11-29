@@ -9,8 +9,8 @@ interface Paper {
   id: number;
   title: string;
 }
-const role = sessionStorage.getItem("role")
-console.log(role)
+//onst role = sessionStorage.getItem("role")
+
 const searchQuery = ref("");
 const papers = ref<Paper[]>([]);
 const totalPapers = ref(0);

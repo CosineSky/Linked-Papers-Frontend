@@ -6,10 +6,10 @@ import { userUpdate } from "../api/user";
 
 const dialogVisible = ref(false);
 
-// 开关弹窗
-// const openDialog = () => {
-//   dialogVisible.value = true;
-// }
+
+const openDialog = () => {
+  dialogVisible.value = true;
+}
 const closeDialog = () => {
   dialogVisible.value = false;
 };

@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import UpgradeDialog from "./UpgradeDialog.vue"; // 导入封装的弹窗组件
 
-const role = sessionStorage.getItem('role')
-console.log(role)//登录的时候插入的
-
+//const role = sessionStorage.getItem('role')
+//console.log(role)//登录的时候插入的
+const role = ref("USER")
 const roleText = computed(() => {
-  return role == "VIP" ? "尊贵的 VIP 用户" : "点击升级";
+  return role.value == "VIP" ? "尊贵的 VIP 用户" : "点击升级";
 });
 const isLoggedIn = computed(() => {
   return role !== null;
 });
 // 点击事件处理，根据角色决定是否显示弹窗
 const handleClick = () => {
-  if (role == "USER") {
-    //openDialog(); // 仅在用户为 USER 时显示升级弹窗
+  if (role.value == "USER") {
+
   } else {
     alert("您已是尊贵的 VIP 用户！");
   }
