@@ -18,9 +18,7 @@ const papers = ref<Paper[]>([]);
 
 const fetchRelatedPapers = async () => {
   try {
-    console.log(paperId)
     const res = await getRelatedPaperById(paperId);
-    console.log(res)
     if (res) {
       papers.value = res.data;
     }
@@ -29,7 +27,7 @@ const fetchRelatedPapers = async () => {
   }
 };
 // 点击论文卡片，跳转到对应的论文界面
-function toStoreDetailPage(paperId: Number) {
+function toPaperDetailPage(paperId: Number) {
   router.push("/paperDetail/" + paperId)
 }
 
@@ -47,7 +45,7 @@ onMounted(() => {
           v-for="paper in papers"
           :key="paper.id"
           :paperVO="paper"
-          @click="toStoreDetailPage(paper.id)"
+          @click="toPaperDetailPage(paper.id)"
       />
     </div>
 

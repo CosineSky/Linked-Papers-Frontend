@@ -9,7 +9,7 @@ interface Paper {
   id: number;
   title: string;
 }
-//onst role = sessionStorage.getItem("role")
+
 
 const searchQuery = ref("");
 const papers = ref<Paper[]>([]);
@@ -30,11 +30,9 @@ const searchPapers = async () => {
   try {
     // 发起 API 请求获取数据
     const res = await searchByKeyword(searchQuery.value, currentPage.value);
-    console.log(res);
     if (res) {
       papers.value = res.data.essays;
-      console.log(papers.value);
-      totalPapers.value = res.data.totalCount;
+      totalPapers.value = res.data.total_pages;
     }
   } catch (error) {
     console.error("搜索失败：", error);
@@ -47,8 +45,8 @@ const handlePageChange = (page: number) => {
   searchPapers(); // 根据当前页重新获取论文数据
 }
 // 点击论文卡片，跳转到对应的论文界面
-function toStoreDetailPage(paperId: Number) {
-  router.push("/paperDetail/" + paperId)
+function toPaperDetailPage(paperId: Number) {
+  router.push("/paperDetail/" + paperId);
 }
 </script>
 
@@ -67,7 +65,7 @@ function toStoreDetailPage(paperId: Number) {
           v-for="paper in papers"
           :key="paper.id"
           :paperVO="paper"
-          @click="toStoreDetailPage(paper.id)"
+          @click="toPaperDetailPage(paper.id)"
       />
     </div>
 

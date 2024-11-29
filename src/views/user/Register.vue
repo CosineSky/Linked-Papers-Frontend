@@ -98,27 +98,46 @@ function handleRegister() {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-size: cover; /* 自动调整背景图大小以覆盖 */
+  background-position: center center; /* 居中显示背景图 */
+  background-repeat: no-repeat; /* 防止重复显示背景图 */
 }
 
 .bgimage {
-  background-image: url("../../assets/shopping-1s-1084px.svg");
+  background-image: url("../../assets/background.webp"); /* 替换为你的背景图路径 */
 }
 
 .login-card {
-  width: 60%;
-  padding: 10px;
+  width: 100%;
+  max-width: 400px; /* 设置最大宽度，避免在小屏幕上过大 */
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.85); /* 半透明背景 */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 卡片阴影 */
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 .error-warn {
   color: red;
 }
 
+.error-warn-input {
+  --el-input-focus-border-color: red;
+}
+
 .button-group {
   padding-top: 10px;
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
-  justify-content: right;
+  justify-content: center; /* 居中按钮 */
 }
 </style>

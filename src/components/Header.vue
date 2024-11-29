@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import {computed, ref} from "vue";
-import UpgradeDialog from "./UpgradeDialog.vue"; // 导入封装的弹窗组件
+import { ElButton, ElDialog } from 'element-plus';
+import {userUpdate} from"../api/user.ts"
+// 控制弹窗显示与隐藏的状态
+const dialogVisible = ref(true);
 
+const url = ref("src/assets/u.png")
 //const role = sessionStorage.getItem('role')
 //console.log(role)//登录的时候插入的
 const role = ref("USER")
@@ -14,13 +18,29 @@ const isLoggedIn = computed(() => {
 // 点击事件处理，根据角色决定是否显示弹窗
 const handleClick = () => {
   if (role.value == "USER") {
-
+    dialogVisible.value = true;
   } else {
     alert("您已是尊贵的 VIP 用户！");
   }
 };
 //退出登录
 
+function updateInfo() {
+  userUpdate({
+    role:role.value,
+  }).then(res => {
+    console.log(res)
+    if (res.status === 200) {
+      ElMessage({
+        customClass: 'customMessage',
+        type: 'success',
+        message: '您已是尊贵的VIP用户！',
+      })
+      role.value = "VIP";
+      dialogVisible.value = false;
+    }
+  })
+}
 </script>
 
 
@@ -38,7 +58,20 @@ const handleClick = () => {
       <el-col :span="2">
         <template v-if="isLoggedIn">
           <el-tag class="role-tag" size="large" @click="handleClick">{{ roleText }}</el-tag>
-          <UpgradeDialog />
+          <el-dialog
+              title="升级到vip"
+              v-model="dialogVisible"
+              width="50%">
+            <el-image
+                style="width: 250px;height:350px"
+                :src="url"
+            ></el-image>
+          <!-- 弹窗的底部按钮 -->
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="dialogVisible = false">取 消</el-button>
+              <el-button type="primary" @click="updateInfo">已支付</el-button>
+            </span>
+          </el-dialog>
         </template>
         <template v-else>
           <router-link to="/login" class="link">Login</router-link>

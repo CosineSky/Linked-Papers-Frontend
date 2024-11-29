@@ -6,7 +6,7 @@ import { getPaperById} from "../../api/paper";
 
 interface Paper {
   title: string;
-  summary: string;
+  abstract: string;
   category: string;
 }
 
@@ -23,6 +23,7 @@ const fetchPaperDetail = async () => {
     console.log(id.value)
     const res = await getPaperById(paperId);
     if (res) {
+      console.log(res);
       paper.value = res.data;
     }
   } catch (error) {
@@ -50,7 +51,7 @@ onMounted(() => {
 <template>
   <div class="paper-detail-container">
     <h2>{{ paper?.title }}</h2>
-    <p><strong>摘要：</strong> {{ paper?.summary }}</p>
+    <p><strong>摘要：</strong> {{ paper?.abstract }}</p>
     <p><strong>类别：</strong> {{ paper?.category }}</p>
 
     <!-- 按钮部分 -->
