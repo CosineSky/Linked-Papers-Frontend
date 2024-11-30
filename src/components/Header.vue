@@ -26,8 +26,9 @@ const handleClick = () => {
 //退出登录
 
 function updateInfo() {
+  const token = sessionStorage.getItem('token') as string;
   userUpdate({
-    role:role.value,
+    token:token
   }).then(res => {
     console.log(res)
     if (res.status === 200) {

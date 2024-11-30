@@ -2,7 +2,7 @@
 import { ElForm, ElFormItem } from "element-plus";
 import { ref, computed } from 'vue';
 import { router } from '../../router';
-import { userInfo, userLogin } from "../../api/user.ts";
+import { userLogin } from "../../api/user.ts";
 
 // 输入框值（需要在前端拦截不合法输入：是否为空+额外规则）
 const email = ref('');
@@ -33,12 +33,9 @@ function handleLogin() {
         type: 'success',
         center: true,
       });
-
-      userInfo().then(res => {
-        sessionStorage.setItem('name', res.data.result.name);
-        sessionStorage.setItem('role', res.data.result.role);
-        router.push({ path: "/search" });
-      });
+      sessionStorage.setItem('name', res.data.nickname);
+      sessionStorage.setItem('role', res.data.role);
+      router.push({ path: "/search" });
     } else if (res.data.code === '400') {
       ElMessage({
         message: res.data.msg,

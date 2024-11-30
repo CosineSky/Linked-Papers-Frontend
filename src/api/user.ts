@@ -11,8 +11,8 @@ type RegisterInfo = {
     email: string,
     password: string,
 }
-type UpdateInfo = {
-    role: string,
+type tokenInfo = {
+    token: string,
 }
 
 
@@ -40,13 +40,12 @@ export const userRegister = (registerInfo: RegisterInfo) => {
 export const userInfo = () => {
     return axios.get(`${USER_MODULE}`)
         .then(res => {
-            console.log(res.data)
             return res
         })
 }
 //改换用户权限
-export const userUpdate = (updateInfo: UpdateInfo) => {
-    return axios.post(`${USER_MODULE}/update`, updateInfo,
+export const userUpdate = (tokenInfo:tokenInfo) => {
+    return axios.post(`${USER_MODULE}/update`,tokenInfo,
         {headers: {'Content-Type': 'application/json'}})
         .then(res => {
             return res
