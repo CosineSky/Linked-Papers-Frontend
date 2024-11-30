@@ -29,7 +29,8 @@ function handleRegister() {
     name: name.value,
     password: password.value,
   }).then(res => {
-    if (res.data.code === '000') {
+    console.log(res)
+    if (res.status === 200) {
       ElMessage({
         message: "注册成功！请登录账号",
         type: 'success',

@@ -36,13 +36,6 @@ export const userRegister = (registerInfo: RegisterInfo) => {
         })
 }
 
-// 获取用户信息
-export const userInfo = () => {
-    return axios.get(`${USER_MODULE}`)
-        .then(res => {
-            return res
-        })
-}
 //改换用户权限
 export const userUpdate = (tokenInfo:tokenInfo) => {
     return axios.post(`${USER_MODULE}/update`,tokenInfo,

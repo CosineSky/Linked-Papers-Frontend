@@ -6,18 +6,18 @@ import {userUpdate} from"../api/user.ts"
 const dialogVisible = ref(true);
 
 const url = ref("src/assets/u.png")
-//const role = sessionStorage.getItem('role')
-//console.log(role)//登录的时候插入的
-const role = ref("USER")
+const role = sessionStorage.getItem('role')
+
+
 const roleText = computed(() => {
-  return role.value == "VIP" ? "尊贵的 VIP 用户" : "点击升级";
+  return role == "VIP" ? "尊贵的 VIP 用户" : "点击升级";
 });
 const isLoggedIn = computed(() => {
   return role !== null;
 });
 // 点击事件处理，根据角色决定是否显示弹窗
 const handleClick = () => {
-  if (role.value == "USER") {
+  if (role == "USER") {
     dialogVisible.value = true;
   } else {
     alert("您已是尊贵的 VIP 用户！");
@@ -37,7 +37,7 @@ function updateInfo() {
         type: 'success',
         message: '您已是尊贵的VIP用户！',
       })
-      role.value = "VIP";
+      role = "VIP";
       dialogVisible.value = false;
     }
   })

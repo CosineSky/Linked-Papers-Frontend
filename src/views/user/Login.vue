@@ -27,11 +27,13 @@ function handleLogin() {
     email: email.value,
     password: password.value
   }).then(res => {
+
     if (res.status === 200) {
       ElMessage({
         message: "登录成功！",
         type: 'success',
         center: true,
+
       });
       sessionStorage.setItem('name', res.data.nickname);
       sessionStorage.setItem('role', res.data.role);

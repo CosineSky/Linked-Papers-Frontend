@@ -19,7 +19,6 @@ const papersPerPage = 10;
 
 const searchDisabled = computed(() => !searchQuery.value.trim());
 
-
 const searchPapers = async () => {
   if (!searchQuery.value.trim()) {
     papers.value = [];
