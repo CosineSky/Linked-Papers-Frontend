@@ -35,6 +35,7 @@ function handleLogin() {
       });
       sessionStorage.setItem('name', res.data.nickname);
       sessionStorage.setItem('role', res.data.role);
+      sessionStorage.setItem('token', res.data.token);
       router.push({ path: "/search" });
     } else if (res.data.code === '400') {
       ElMessage({
