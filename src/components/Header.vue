@@ -7,7 +7,7 @@ const dialogVisible = ref(true);
 
 const url = ref("src/assets/u.png")
 const role = sessionStorage.getItem('role')
-
+console.log(role)
 
 const roleText = computed(() => {
   return role == "VIP" ? "尊贵的 VIP 用户" : "点击升级";
@@ -27,6 +27,7 @@ const handleClick = () => {
 
 function updateInfo() {
   const token = sessionStorage.getItem('token') as string;
+  console.log(token)
   userUpdate({
     token:token
   }).then(res => {
@@ -37,8 +38,9 @@ function updateInfo() {
         type: 'success',
         message: '您已是尊贵的VIP用户！',
       })
-      role = "VIP";
+      sessionStorage.setItem('role',"VIP");
       dialogVisible.value = false;
+      location.reload();
     }
   })
 }
