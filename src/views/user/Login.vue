@@ -143,19 +143,6 @@ function handleLogin() {
   justify-content: center; /* 居中按钮 */
 }
 
-.el-button {
-  min-width: 120px;
-  font-size: 16px; /* 更大字体的按钮 */
-}
-
-.el-button:hover {
-  opacity: 0.9;
-}
-
-/* 输入框和按钮焦点样式 */
-.el-input:focus, .el-button:focus {
-  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.4); /* 蓝色聚焦边框 */
-}
 /* 按钮颜色 */
 .login-button {
   background-color: #409eff;

@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 import { getCitedPaperById} from "../../api/paper";
 import PaperItem from "../../components/PaperItem.vue";
 import { ElPagination } from "element-plus";
+import {router} from '../../router'
 
 // 定义 Paper 接口
 interface Paper {
@@ -18,7 +19,16 @@ const papers = ref<Paper[]>([]);
 const totalPapers = ref(0);
 const currentPage = ref(1);
 const papersPerPage = 10;
+const role = ref<string | null>(sessionStorage.getItem('role'))
 
+// 点击论文卡片，跳转到对应的论文界面
+function toPaperDetailPage(paperId: Number) {
+  if(role.value === "USER"){
+    alert("若要使用该功能，请您升级到VIP用户！");
+  }else{
+    router.push("/paperDetail/" + paperId)
+  }
+}
 
 const fetchCitedPapers = async () => {
   try {
@@ -46,12 +56,13 @@ onMounted(() => {
 
 <template>
   <div class="paper-list-page">
-    <h2>引用论文列表</h2>
+    <h2>引用论文列表(VIP)</h2>
     <div class="paper-list">
       <PaperItem
           v-for="paper in papers"
           :key="paper.id"
           :paperVO="paper"
+          @click="toPaperDetailPage(paper.id)"
       />
     </div>
 
