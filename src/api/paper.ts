@@ -42,6 +42,7 @@ export const getSimilarPaperById = (paperId: number, page: number) => {
 
 // 根据论文Id获取引用论文
 export const getCitedPaperById = (paperId: number) => {
+    console.log(paperId)
     return axios.get(`${PAPER_MODULE}/${paperId}/cited`)
         .then(res => {
             return res;
