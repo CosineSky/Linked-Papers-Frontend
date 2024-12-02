@@ -36,7 +36,8 @@ function hashPassword(password: string) {
 function handleRegister() {
 	const salt: string = crypto.randomUUID()
 	const hashedPassword = hashPassword(password.value);
-
+	console.log("Register: ", hashedPassword)
+	
     userRegister({
 	    salt: salt,
         name: name.value,

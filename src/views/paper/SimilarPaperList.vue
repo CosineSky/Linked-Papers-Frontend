@@ -48,24 +48,38 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="paper-list-page">
-    <h2>同类论文列表</h2>
-    <div class="paper-list">
-      <PaperItem
-          v-for="paper in papers"
-          :key="paper.id"
-          :paperVO="paper"
-          @click="toStoreDetailPage(paper.id)"
-      />
-    </div>
+	<body>
+	<div class="paper-list-page">
+		<h2 style="text-align: center">同类论文列表</h2>
+		<div class="paper-list">
+			<PaperItem
+				v-for="paper in papers"
+				:key="paper.id"
+				:paperVO="paper"
+				@click="toStoreDetailPage(paper.id)"
+			/>
+		</div>
+		
+		<el-pagination
+			:current-page="currentPage"
+			:page-size="papersPerPage"
+			:total="totalPapers"
+			@current-change="handlePageChange"
+			style="justify-content: center"
+			layout="prev, pager, next, jumper"
+		/>
+	</div>
+	</body>
 
-    <el-pagination
-        :current-page="currentPage"
-        :page-size="papersPerPage"
-        :total="totalPapers"
-        @current-change="handlePageChange"
-
-        layout="prev, pager, next, jumper"
-    />
-  </div>
 </template>
+
+<style scoped>
+.paper-list {
+	margin-top: 20px;
+	max-height: 500px;
+	overflow: auto;
+}
+body {
+	background: linear-gradient(to bottom, #409eff, #ffffff);
+}
+</style>

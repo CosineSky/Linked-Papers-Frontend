@@ -14,10 +14,14 @@
     "crypto-js": "^4.2.0",
     "element-plus": "^2.5.3",
     "js-md5": "^0.8.3",
+    "katex": "^0.16.11",
+    "mathjax": "^3.2.2",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
+    "@types/katex": "^0.16.7",
+    "@types/mathjax": "^0.0.40",
     "@vitejs/plugin-vue": "^4.5.0",
     "typescript": "^5.2.2",
     "unplugin-auto-import": "^0.16.7",

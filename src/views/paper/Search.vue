@@ -50,42 +50,53 @@ function toPaperDetailPage(paperId: Number) {
 </script>
 
 <template>
-  <div class="search-page">
-    <el-input
-        v-model="searchQuery"
-        placeholder="请输入搜索关键词"
-        clearable
-        style="width: 300px; margin-bottom: 20px;"
-    />
-    <el-button :disabled="searchDisabled" type="primary" @click="searchPapers">搜索</el-button>
-
-    <div class="paper-list">
-      <PaperItem
-          v-for="paper in papers"
-          :key="paper.id"
-          :paperVO="paper"
-          @click="toPaperDetailPage(paper.id)"
-      />
-    </div>
-
-    <!-- 分页 -->
-    <el-pagination
-        :current-page="currentPage"
-        :page-size="papersPerPage"
-        :total="totalPapers"
-        @current-change="handlePageChange"
-        layout="prev, pager, next, jumper"
-    />
-  </div>
+	<body>
+		<div class="search-page">
+			<div>
+				<el-input
+					v-model="searchQuery"
+					placeholder="请输入搜索关键词"
+					clearable
+					style="width: 300px;"
+				/>
+				<el-button :disabled="searchDisabled" type="primary" @click="searchPapers">搜索</el-button>
+			</div>
+			<div class="paper-list">
+				<PaperItem
+					v-for="paper in papers"
+					:key="paper.id"
+					:paperVO="paper"
+					@click="toPaperDetailPage(paper.id)"
+				/>
+			</div>
+			<!-- 分页 -->
+			<el-pagination
+				v-if="papers.length > 0"
+				:current-page="currentPage"
+				:page-size="papersPerPage"
+				:total="totalPapers"
+				@current-change="handlePageChange"
+				layout="prev, pager, next, jumper"
+			/>
+		</div>
+	</body>
 </template>
 
 <style scoped>
 .search-page {
-  padding: 20px;
+    padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .paper-list {
-  margin-top: 20px;
+    margin-top: 20px;
+	max-height: 500px;
+	overflow: auto;
+}
+body {
+	background: linear-gradient(to bottom, #409eff, #ffffff);
 }
 
 </style>

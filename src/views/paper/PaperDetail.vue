@@ -3,7 +3,6 @@ import { ref, onMounted} from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { getPaperById} from "../../api/paper";
 
-
 interface Paper {
   title: string;
   abstract: string;
@@ -49,37 +48,46 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="paper-detail-container">
-    <h2>{{ paper?.title }}</h2>
-    <p><strong>摘要：</strong> {{ paper?.abstract }}</p>
-    <p><strong>类别：</strong> {{ paper?.category }}</p>
+	<body>
+	<div class="paper-detail-container">
+		<h2>{{ paper?.title }}</h2>
+		<p><strong>摘要：</strong> {{ paper?.abstract }}</p>
+		<p><strong>类别：</strong> {{ paper?.category }}</p>
+		<div class="bottom-buttons">
+			<!-- 按钮部分 -->
+			<el-button
+				type="primary"
+				@click="navigateTo('similarPaperList')"
+				style="margin-top: 10px;"
+			>
+				<el-text>查看同类论文</el-text>
+			</el-button>
+			<el-button
+				type="primary"
+				@click="navigateTo('relatedPaperList')"
+				style="margin-top: 10px;"
+			>
+				<el-text>查看相似论文</el-text>
+			</el-button>
+			<el-button
+				type="primary"
+				@click="navigateTo('citedPaperList')"
+				style="margin-top: 10px;"
+			>
+				<el-text>查看引用论文</el-text>
+			</el-button>
+		</div>
+		
 
-    <!-- 按钮部分 -->
-    <el-button
-        type="primary"
-        @click="navigateTo('similarPaperList')"
-        style="margin-top: 10px;"
-    >
-      <el-text>查看同类论文</el-text>
-    </el-button>
-    <el-button
-        type="primary"
-        @click="navigateTo('relatedPaperList')"
-        style="margin-top: 10px;"
-    >
-      <el-text>查看相似论文</el-text>
-    </el-button>
-    <el-button
-        type="primary"
-        @click="navigateTo('citedPaperList')"
-        style="margin-top: 10px;"
-    >
-      <el-text>查看引用论文</el-text>
-    </el-button>
-  </div>
+	</div>
+	</body>
+
 </template>
 
 <style scoped>
+body {
+	background: linear-gradient(to bottom, #409eff, #ffffff);
+}
 .paper-detail-container {
   padding: 20px;
   max-width: 600px;
@@ -93,5 +101,10 @@ onMounted(() => {
 }
 .paper-detail-container p {
   margin: 10px 0;
+}
+.bottom-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 </style>

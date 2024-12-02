@@ -22,7 +22,7 @@ const loginDisabled = computed(() => {
   return !(hasEmailInput.value && email.value && hasPasswordInput.value);
 });
 
-const SALT = "salt"
+const SALT = "SALT_STRING"
 function hashPassword(password: string) {
 	return CryptoJS.PBKDF2(password, SALT).toString(CryptoJS.enc.Hex);
 }
@@ -30,7 +30,8 @@ function hashPassword(password: string) {
 // 登录按钮触发
 function handleLogin() {
 	const hashedPassword = hashPassword(password.value);
-	// const hashedPassword = hashWithSHA256(password.value);
+	console.log("Login: ", hashedPassword)
+	
     userLogin({
         email: email.value,
         password: hashedPassword,
