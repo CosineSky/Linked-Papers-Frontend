@@ -7,6 +7,7 @@ type LoginInfo = {
 }
 
 type RegisterInfo = {
+    salt: string
     name: string,
     email: string,
     password: string,

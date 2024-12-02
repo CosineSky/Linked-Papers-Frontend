@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { router } from '../../router';
-import { userRegister } from "../../api/user.ts";
-import { ElMessage } from "element-plus";
+import {computed, ref} from 'vue';
+import {router} from '../../router';
+import {userRegister} from "../../api/user.ts";
+import {ElMessage} from "element-plus";
+import CryptoJS from 'crypto-js';
 
 // 输入框值
 const email = ref('');
@@ -22,29 +23,43 @@ const registerDisabled = computed(() => {
   return !(email.value && name.value && password.value && confirmPassword.value && isEmailValid.value && isPasswordIdentical.value);
 });
 
+
+// function hashWithSHA256(value: any) {
+// 	return CryptoJS.SHA256(value).toString(CryptoJS.enc.Hex);
+// }
+
+const SALT = "SALT_STRING"
+function hashPassword(password: string) {
+	return CryptoJS.PBKDF2(password, SALT).toString(CryptoJS.enc.Hex);
+}
 // 注册按钮触发
 function handleRegister() {
-  userRegister({
-    email: email.value,
-    name: name.value,
-    password: password.value,
-  }).then(res => {
-    console.log(res)
-    if (res.status === 200) {
-      ElMessage({
-        message: "注册成功！请登录账号",
-        type: 'success',
-        center: true,
-      });
-      router.push({ path: "/login" });
-    } else if (res.data.code === '400') {
-      ElMessage({
-        message: res.data.msg,
-        type: 'error',
-        center: true,
-      });
-    }
-  });
+	const salt: string = crypto.randomUUID()
+	const hashedPassword = hashPassword(password.value);
+
+    userRegister({
+	    salt: salt,
+        name: name.value,
+	    email: email.value,
+        password: hashedPassword,
+    }).then(res => {
+        console.log(res)
+        if (res.status === 200) {
+            ElMessage({
+                message: "注册成功！请登录账号",
+                type: 'success',
+                center: true,
+            });
+            router.push({ path: "/login" });
+        }
+		else if (res.data.code === '400') {
+            ElMessage({
+                message: res.data.msg,
+                type: 'error',
+                center: true,
+            });
+        }
+    });
 }
 </script>
 

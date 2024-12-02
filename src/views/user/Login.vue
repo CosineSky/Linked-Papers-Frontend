@@ -3,6 +3,7 @@ import { ElForm, ElFormItem } from "element-plus";
 import { ref, computed } from 'vue';
 import { router } from '../../router';
 import { userLogin } from "../../api/user.ts";
+import CryptoJS from "crypto-js";
 
 // 输入框值（需要在前端拦截不合法输入：是否为空+额外规则）
 const email = ref('');
@@ -21,33 +22,39 @@ const loginDisabled = computed(() => {
   return !(hasEmailInput.value && email.value && hasPasswordInput.value);
 });
 
+const SALT = "salt"
+function hashPassword(password: string) {
+	return CryptoJS.PBKDF2(password, SALT).toString(CryptoJS.enc.Hex);
+}
+
 // 登录按钮触发
 function handleLogin() {
-  userLogin({
-    email: email.value,
-    password: password.value
-  }).then(res => {
+	const hashedPassword = hashPassword(password.value);
+	// const hashedPassword = hashWithSHA256(password.value);
+    userLogin({
+        email: email.value,
+        password: hashedPassword,
+    }).then(res => {
 
-    if (res.status === 200) {
-      ElMessage({
-        message: "登录成功！",
-        type: 'success',
-        center: true,
-
-      });
-      sessionStorage.setItem('name', res.data.nickname);
-      sessionStorage.setItem('role', res.data.role);
-      sessionStorage.setItem('token', res.data.token);
-      router.push({ path: "/search" });
-    } else if (res.data.code === '400') {
-      ElMessage({
-        message: res.data.msg,
-        type: 'error',
-        center: true,
-      });
-      password.value = '';
-    }
-  });
+	    if (res.status === 200) {
+	        ElMessage({
+	            message: "登录成功！",
+	            type: 'success',
+	            center: true,
+	        });
+	        sessionStorage.setItem('name', res.data.nickname);
+	        sessionStorage.setItem('role', res.data.role);
+	        sessionStorage.setItem('token', res.data.token);
+	        router.push({ path: "/search" });
+	    } else if (res.data.code === '400') {
+	        ElMessage({
+	            message: res.data.msg,
+	            type: 'error',
+	            center: true,
+	        });
+	        password.value = '';
+	    }
+    });
 }
 </script>
 
