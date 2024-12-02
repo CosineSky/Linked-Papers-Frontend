@@ -57,12 +57,13 @@ onMounted(() => {
 <template>
 	<body>
 	<div class="paper-list-page">
-		<h2 style="text-align: center">引用论文列表</h2>
+		<h2 style="text-align: center">引用论文列表(VIP)</h2>
 		<div class="paper-list">
 			<PaperItem
 				v-for="paper in papers"
 				:key="paper.id"
 				:paperVO="paper"
+				@click="toPaperDetailPage(paper.id)"
 			/>
 		</div>
 		
@@ -78,26 +79,7 @@ onMounted(() => {
 	</div>
 	</body>
 
-  <div class="paper-list-page">
-    <h2>引用论文列表(VIP)</h2>
-    <div class="paper-list">
-      <PaperItem
-          v-for="paper in papers"
-          :key="paper.id"
-          :paperVO="paper"
-          @click="toPaperDetailPage(paper.id)"
-      />
-    </div>
 
-    <!-- 分页 -->
-    <el-pagination
-        :current-page="currentPage"
-        :page-size="papersPerPage"
-        :total="totalPapers"
-        @current-change="handlePageChange"
-        layout="prev, pager, next, jumper"
-    />
-  </div>
 </template>
 
 <style scoped>

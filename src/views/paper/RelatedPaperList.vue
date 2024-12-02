@@ -43,18 +43,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="paper-list-page">
-    <h2 style="text-align: center">相关论文列表(VIP)</h2>
-    <div class="paper-list">
-      <PaperItem
-          v-for="paper in papers"
-          :key="paper.id"
-          :paperVO="paper"
-          @click="toPaperDetailPage(paper.id)"
-      />
-    </div>
-
-  </div>
+	<body>
+	<div class="paper-list-page">
+		<h2 style="text-align: center">相关论文列表(VIP)</h2>
+		<div class="paper-list">
+			<PaperItem
+				v-for="paper in papers"
+				:key="paper.id"
+				:paperVO="paper"
+				@click="toPaperDetailPage(paper.id)"
+			/>
+		</div>
+	</div>
+	</body>
 </template>
 
 <style scoped>
