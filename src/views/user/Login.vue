@@ -36,17 +36,17 @@ function handleLogin() {
         email: email.value,
         password: hashedPassword,
     }).then(res => {
-
 	    if (res.status === 200) {
 	        ElMessage({
 	            message: "登录成功！",
 	            type: 'success',
 	            center: true,
 	        });
-	        sessionStorage.setItem('name', res.data.nickname);
-	        sessionStorage.setItem('role', res.data.role);
-	        sessionStorage.setItem('token', res.data.token);
-	        router.push({ path: "/search" });
+
+	        sessionStorage.setItem('name', res.data.result.nickname);
+	        sessionStorage.setItem('role', res.data.result.role);
+	        sessionStorage.setItem('token', res.data.result.token);
+	        //router.push({ path: "/search" });
 	    } else if (res.data.code === '400') {
 	        ElMessage({
 	            message: res.data.msg,

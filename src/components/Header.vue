@@ -15,6 +15,7 @@ const roleText = computed(() => {
 const isLoggedIn = computed(() => {
   return role.value != null;
 });
+console.log(role.value)
 // 点击事件处理，根据角色决定是否显示弹窗
 const handleClick = () => {
   if (role.value == "USER") {
