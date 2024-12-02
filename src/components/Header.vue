@@ -3,7 +3,7 @@ import {computed, ref} from "vue";
 import { ElButton, ElDialog } from 'element-plus';
 import {userUpdate} from"../api/user.ts"
 // 控制弹窗显示与隐藏的状态
-const dialogVisible = ref(true);
+const dialogVisible = ref(false);
 
 const url = ref("src/assets/u.png")
 const role = ref<string | null>(sessionStorage.getItem('role'))
