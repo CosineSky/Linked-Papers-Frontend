@@ -25,7 +25,7 @@ service.interceptors.request.use(
 //当前实例的拦截器，对所有从后端收到的请求进行处理，检验http的状态码
 service.interceptors.response.use(
     response => {
-        if (response.status === 200 || response.status === 0) {
+        if (response.status === 200 || response.status === 0 ||response.status == 401) {
             return response;
         } else {
             return Promise.reject();

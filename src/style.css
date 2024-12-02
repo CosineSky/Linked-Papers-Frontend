@@ -1,4 +1,22 @@
 /*一些公用的css*/
+/*一些公用的css*/
+@font-face {
+    font-family: 'ChineseFont';
+    src: url('src/assets/fonts/MaoKenZhuYuanTi-MaokenZhuyuanTi-2.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'EnglishFont';
+    src: url('src/assets/fonts/Conther-2.ttf') format('truetype');
+}
+body {
+    font-family: 'EnglishFont', sans-serif; /* 默认英文字体 */
+}
+
+/* 针对中文内容应用中文字体 */
+:lang(zh) {
+    font-family: 'ChineseFont', sans-serif;
+}
 
 :root {
     font-family: sans-serif;
@@ -19,6 +37,11 @@ html, body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+/* 应用全局字体到整个页面 */
+* {
+    font-family: 'MyFont', sans-serif !important;  /* 使用自定义字体并确保覆盖其他字体设置 */
 }
 
 

@@ -14,6 +14,7 @@ const route = useRoute();
 const id = ref(route.params.paperId as string);
 const paperId =+id.value;
 const papers = ref<Paper[]>([]);
+const role = ref<string | null>(sessionStorage.getItem('role'))
 
 
 const fetchRelatedPapers = async () => {
@@ -28,7 +29,11 @@ const fetchRelatedPapers = async () => {
 };
 // 点击论文卡片，跳转到对应的论文界面
 function toPaperDetailPage(paperId: Number) {
-  router.push("/paperDetail/" + paperId)
+  if(role.value === "USER"){
+    alert("若要使用该功能，请您升级到VIP用户！");
+  }else{
+    router.push("/paperDetail/" + paperId)
+  }
 }
 
 
@@ -38,19 +43,18 @@ onMounted(() => {
 </script>
 
 <template>
-	<body>
-	  <div class="paper-list-page">
-	    <h2 style="text-align: center">相关论文列表</h2>
-	    <div class="paper-list">
-	      <PaperItem
-	          v-for="paper in papers"
-	          :key="paper.id"
-	          :paperVO="paper"
-	          @click="toPaperDetailPage(paper.id)"
-	      />
-	    </div>
-	  </div>
-	</body>
+  <div class="paper-list-page">
+    <h2 style="text-align: center">相关论文列表(VIP)</h2>
+    <div class="paper-list">
+      <PaperItem
+          v-for="paper in papers"
+          :key="paper.id"
+          :paperVO="paper"
+          @click="toPaperDetailPage(paper.id)"
+      />
+    </div>
+
+  </div>
 </template>
 
 <style scoped>
