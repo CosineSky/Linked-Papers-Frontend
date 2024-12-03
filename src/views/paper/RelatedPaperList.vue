@@ -5,6 +5,7 @@ import { getRelatedPaperById } from "../../api/paper";
 import PaperItem from "../../components/PaperItem.vue";
 import {router} from '../../router'
 import Graph from "../../components/Graph.vue";
+import {fullScreenLoading} from "../../utils/visuals";
 
 interface Paper {
   id: number;
@@ -22,7 +23,7 @@ const fetchRelatedPapers = async () => {
   try {
     const res = await getRelatedPaperById(paperId);
     if (res) {
-      papers.value = res.data;
+      papers.value = res.data.essays;
     }
   } catch (error) {
     console.error("获取相关论文失败：", error);
@@ -39,7 +40,8 @@ function toPaperDetailPage(paperId: Number) {
 
 
 onMounted(() => {
-  fetchRelatedPapers();
+    fetchRelatedPapers();
+	fullScreenLoading(3000);
 });
 </script>
 

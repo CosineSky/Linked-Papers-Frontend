@@ -60,8 +60,8 @@ export default {
 					physics: {
 						enabled: true, // 开启物理引擎
 						barnesHut: {
-							gravitationalConstant: -2000, // 引力常数，调整节点间的吸引力
-							springLength: 400, // 弹簧长度，控制节点之间的间距
+							gravitationalConstant: -500, // 引力常数，调整节点间的吸引力
+							springLength: 666, // 弹簧长度，控制节点之间的间距
 							springConstant: 0.04, // 弹簧常数，控制节点的弹性
 						},
 						solver: 'barnesHut', // 使用 barnesHut 算法来模拟物理

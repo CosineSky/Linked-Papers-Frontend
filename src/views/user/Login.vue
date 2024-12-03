@@ -46,7 +46,7 @@ function handleLogin() {
 	        sessionStorage.setItem('name', res.data.result.nickname);
 	        sessionStorage.setItem('role', res.data.result.role);
 	        sessionStorage.setItem('token', res.data.result.token);
-	        //router.push({ path: "/search" });
+	        router.push({ path: "/search" });
 	    } else if (res.data.code === '400') {
 	        ElMessage({
 	            message: res.data.msg,

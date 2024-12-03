@@ -5,6 +5,7 @@ import { getCitedPaperById} from "../../api/paper";
 import PaperItem from "../../components/PaperItem.vue";
 import { ElPagination } from "element-plus";
 import {router} from '../../router'
+import {fullScreenLoading} from "../../utils/visuals";
 
 // 定义 Paper 接口
 interface Paper {
@@ -50,7 +51,8 @@ const handlePageChange = (page: number) => {
 
 // 页面加载时获取引用的论文
 onMounted(() => {
-  fetchCitedPapers();
+    fetchCitedPapers();
+	fullScreenLoading(2500);
 });
 </script>
 

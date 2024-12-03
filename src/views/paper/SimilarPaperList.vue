@@ -5,6 +5,7 @@ import {getSimilarPaperById} from "../../api/paper";
 import PaperItem from "../../components/PaperItem.vue";
 import { ElPagination } from "element-plus";
 import {router} from '../../router'
+import {fullScreenLoading} from "../../utils/visuals";
 
 interface Paper {
   id: number;
@@ -43,7 +44,8 @@ const handlePageChange = (page: number) => {
 };
 
 onMounted(() => {
-  fetchSimilarPapers();
+    fetchSimilarPapers();
+	fullScreenLoading(2500);
 });
 </script>
 
