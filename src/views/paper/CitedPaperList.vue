@@ -55,37 +55,71 @@ onMounted(() => {
 	fullScreenLoading(2500);
 });
 </script>
-
 <template>
-	<body>
-	<div class="paper-list-page">
-		<h2 style="text-align: center">引用论文列表(VIP)</h2>
-		<div class="paper-list">
-			<PaperItem
-				v-for="paper in papers"
-				:key="paper.id"
-				:paperVO="paper"
-				@click="toPaperDetailPage(paper.id)"
-			/>
-		</div>
-		
-		<!-- 分页 -->
-		<el-pagination
-			style="justify-content: center"
-			:current-page="currentPage"
-			:page-size="papersPerPage"
-			:total="totalPapers"
-			@current-change="handlePageChange"
-			layout="prev, pager, next, jumper"
-		/>
-	</div>
-	</body>
+  <body>
+  <div class="paper-list-page">
+    <h2 class="page-title">引用论文列表</h2>
+    <div class="paper-list">
+      <PaperItem
+          v-for="paper in papers"
+          :key="paper.id"
+          :paperVO="paper"
+          @click="toPaperDetailPage(paper.id)"
+      />
+    </div>
 
-
+    <!-- 分页 -->
+    <el-pagination
+        class="pagination"
+        :current-page="currentPage"
+        :page-size="papersPerPage"
+        :total="totalPapers"
+        @current-change="handlePageChange"
+        layout="prev, pager, next, jumper"
+    />
+  </div>
+  </body>
 </template>
 
 <style scoped>
-body {
-	background: linear-gradient(to bottom, #409eff, #ffffff);
+/* 背景渐变色 */
+
+.paper-list-page {
+  background: linear-gradient(to bottom, #2a5caa, #fffef9);
+  padding: 20px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
+
+.pagination {
+  text-align: center;
+  margin-top: 30px;
+}
+.paper-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.paper-list::-webkit-scrollbar-thumb {
+  background-color: #224b8f;
+  border-radius: 10px;
+}
+
+
+.page-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f4f4f4;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.paper-list {
+  margin-top: 20px;
+  max-height: 500px;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+
 </style>

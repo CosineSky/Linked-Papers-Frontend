@@ -107,15 +107,22 @@ function handleLogin() {
 }
 
 .bgimage {
-  background-image: url("../../assets/background.webp");
+  background-image: url("../../assets/background.jpg");
 }
-
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1c3c6d;
+  margin-bottom: 20px;
+}
 .login-card {
   width: 100%;
   max-width: 400px;
   padding: 30px;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9)); /* 渐变背景 */
   border-radius: 12px;
+  color: #2d4c7c;
   box-shadow: 0 4px 12px rgba(5, 2, 2, 40);
 }
 
@@ -123,7 +130,7 @@ function handleLogin() {
   text-align: center;
   font-size: 26px;
   font-weight: 700;
-  color: #333; /* 更深的字体颜色 */
+  color: #425b6c; /* 更深的字体颜色 */
   margin-bottom: 20px;
 }
 
@@ -146,15 +153,15 @@ function handleLogin() {
 
 /* 按钮颜色 */
 .login-button {
-  background-color: #409eff;
-  border-color: #409eff;
+  background-color: #5482b3;
+  border-color: #235180;
   color: white;
 }
 
 .register-button {
-  background-color: #f4f4f4;
+  background-color: #ffffff;
   border-color: #dcdfe6;
-  color: #409eff;
+  color: #526c88;
 }
 
 </style>

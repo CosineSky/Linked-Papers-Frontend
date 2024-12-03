@@ -68,9 +68,9 @@ function handleRegister() {
   <el-main class="main-frame bgimage">
     <el-card class="login-card">
       <div>
-        <h1>创建一个新的账户</h1>
+        <h1 class="title">创建一个新的账户</h1>
 
-        <el-form>
+        <el-form class="form">
           <el-form-item>
             <label for="email">邮箱</label>
             <el-input id="email" v-model="email" placeholder="请输入邮箱"/>
@@ -98,7 +98,8 @@ function handleRegister() {
               创建账户
             </el-button>
             <router-link to="/login" v-slot="{ navigate }">
-              <el-button @click="navigate">去登录</el-button>
+              <el-button @click="navigate"
+              class="button">去登录</el-button>
             </router-link>
           </span>
 
@@ -121,7 +122,7 @@ function handleRegister() {
 }
 
 .bgimage {
-  background-image: url("../../assets/background.webp"); /* 替换为你的背景图路径 */
+  background-image: url("../../assets/background.jpg"); /* 替换为你的背景图路径 */
 }
 
 .login-card {
@@ -137,7 +138,7 @@ function handleRegister() {
   text-align: center;
   font-size: 24px;
   font-weight: 600;
-  color: #333;
+  color: #1c3c6d;
   margin-bottom: 20px;
 }
 
@@ -145,10 +146,12 @@ function handleRegister() {
   color: red;
 }
 
-.error-warn-input {
-  --el-input-focus-border-color: red;
+.form{
+  color:#1c3c6d
 }
-
+.button{
+  color:#1c3c6d;
+}
 .button-group {
   padding-top: 10px;
   display: flex;

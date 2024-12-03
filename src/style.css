@@ -13,10 +13,6 @@ body {
     font-family: 'EnglishFont', sans-serif; /* 默认英文字体 */
 }
 
-/* 针对中文内容应用中文字体 */
-:lang(zh) {
-    font-family: 'ChineseFont', sans-serif;
-}
 
 :root {
     font-family: sans-serif;

@@ -49,7 +49,7 @@ onMounted(() => {
 	<body>
 		<div class="main-container">
 			<div class="paper-list-page">
-				<h2 style="text-align: center">相关论文列表(VIP)</h2>
+        <h2 class="page-title">相关论文列表</h2>
 				<div class="paper-list">
 					<PaperItem
 						v-for="paper in papers"
@@ -59,6 +59,7 @@ onMounted(() => {
 					/>
 				</div>
 			</div>
+
 			<div id="app">
 				<Graph :papers="papers" />
 			</div>
@@ -68,8 +69,17 @@ onMounted(() => {
 
 <style scoped>
 body {
-	background: linear-gradient(to bottom, #409eff, #ffffff);
+	background: linear-gradient(to bottom, #2a5caa, #fffef9);
 	overflow: hidden;
+}
+.page-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fffef9;  /* 标题颜色 */
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase;  /* 标题大写 */
+  letter-spacing: 1px;  /* 字符间距 */
 }
 .main-container {
 	display: flex;
@@ -80,6 +90,23 @@ body {
 	margin-top: 20px;
 	max-height: 500px;
 	overflow: auto;
+}
+/* 滑动条样式 */
+.paper-list::-webkit-scrollbar {
+  width: 8px;  /* 滑动条宽度 */
+}
+.paper-list::-webkit-scrollbar-thumb {
+  background-color: #224b8f;
+  border-radius: 10px;
+}
+#app {
+  padding: 20px;
+  background-color: #fffef9;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;  /* 页面元素间的间隙 */
+  margin-right: 50px;
+  margin-top:20px;
 }
 </style>
 
