@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 import { getRelatedPaperById } from "../../api/paper";
 import PaperItem from "../../components/PaperItem.vue";
 import {router} from '../../router'
+import Graph from "../../components/Graph.vue";
 
 interface Paper {
   id: number;
@@ -44,27 +45,39 @@ onMounted(() => {
 
 <template>
 	<body>
-	<div class="paper-list-page">
-		<h2 style="text-align: center">相关论文列表(VIP)</h2>
-		<div class="paper-list">
-			<PaperItem
-				v-for="paper in papers"
-				:key="paper.id"
-				:paperVO="paper"
-				@click="toPaperDetailPage(paper.id)"
-			/>
+		<div class="main-container">
+			<div class="paper-list-page">
+				<h2 style="text-align: center">相关论文列表(VIP)</h2>
+				<div class="paper-list">
+					<PaperItem
+						v-for="paper in papers"
+						:key="paper.id"
+						:paperVO="paper"
+						@click="toPaperDetailPage(paper.id)"
+					/>
+				</div>
+			</div>
+			<div id="app">
+				<Graph :papers="papers" />
+			</div>
 		</div>
-	</div>
 	</body>
 </template>
 
 <style scoped>
 body {
 	background: linear-gradient(to bottom, #409eff, #ffffff);
+	overflow: hidden;
+}
+.main-container {
+	display: flex;
+	flex-direction: row;
+	max-height: 500px;
 }
 .paper-list {
 	margin-top: 20px;
-	max-height: 600px;
+	max-height: 500px;
+	overflow: auto;
 }
 </style>
 

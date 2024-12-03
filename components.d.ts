@@ -20,6 +20,7 @@ declare module 'vue' {
     ElRow: typeof import('element-plus/es')['ElRow']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElText: typeof import('element-plus/es')['ElText']
+    Graph: typeof import('./src/components/Graph.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
     PaperItem: typeof import('./src/components/PaperItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
